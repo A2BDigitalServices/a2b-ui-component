@@ -77,6 +77,9 @@
                 <li class="nav-item">
                   <a class="nav-link" href="contact.html">Contact Us</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="login.html">Login</a>
+                </li>
               </ul>
             </div>
           </nav>
@@ -98,7 +101,7 @@
               <p>
                 Discover simplified financial solutions at A2B Digital Services. From loans for personal or business needs to comprehensive insurance coverage, we've got you covered. With clear terms, competitive rates, and user-friendly digital access, achieving your financial goals has never been easier. Trust A2B Digital Services for peace of mind and financial empowerment.
               </p>
-              <a href="">
+              <a href="contact.html">
                 Contact Us
               </a>
             </div>
@@ -425,25 +428,23 @@
       </div>
       <div class="row">
         <div class="col-md-6">
-          <form action="">
+          <form id="contactForm">
             <div>
-              <input type="text" placeholder="Name" />
-            </div>
-            <div>
-              <input type="text" placeholder="Phone Number" />
+                <input type="text" id="name" placeholder="Name" />
             </div>
             <div>
-              <input type="email" placeholder="Email" />
+                <input type="text" id="phoneNumber" placeholder="Phone Number" />
             </div>
             <div>
-              <input type="text" class="message-box" placeholder="Message" />
+                <input type="email" id="email" placeholder="Email" />
             </div>
-            <div class="d-flex ">
-              <button>
-                SEND
-              </button>
+            <div>
+                <input type="text" id="message" class="message-box" placeholder="Message" />
             </div>
-          </form>
+            <div class="d-flex">
+                <button type="button" onclick="sendContact()">SEND</button>
+            </div>
+        </form>
         </div> 
         <div class="col-md-6">
           <div class="map_container">
@@ -454,6 +455,7 @@
         </div>
       </div>
     </div>
+    <div id="messageContainer" style="display: none;"></div> 
   </section>
 
   <!-- end contact section -->
@@ -548,6 +550,7 @@
 
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.js"></script>
+  <script src="js/contactus.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
   </script>
   <script src="js/custom.js"></script>
