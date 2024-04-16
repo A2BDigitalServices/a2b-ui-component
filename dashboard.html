@@ -3,7 +3,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
-    <title>Responsiive Admin Dashboard | CodingLab</title>
+    <title>Admin Dashboard</title>
     <link rel="stylesheet" href="dashboard_style.css" />
     <!-- Boxicons CDN Link -->
     <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
@@ -23,46 +23,52 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="werize.html" target="_blank">
             <i class="bx bx-box"></i>
-            <span class="links_name">Open</span>
+            <span class="links_name">WeRize</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="digiloans.html" target="_blank">
             <i class="bx bx-list-ul"></i>
-            <span class="links_name">Progress</span>
+            <span class="links_name">DigiLoans</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="ibog.html" target="_blank">
             <i class="bx bx-pie-chart-alt-2"></i>
-            <span class="links_name">Rejected</span>
+            <span class="links_name">iBOG</span>
           </a>
         </li>
 
         <li>
-          <a href="#">
+          <a href="lendingkart.html" target="_blank">
             <i class="bx bx-book-alt"></i>
-            <span class="links_name">Closed</span>
+            <span class="links_name">Lendingkart</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="chola.html" target="_blank">
             <i class="bx bx-user"></i>
-            <span class="links_name">Pending Loans</span>
+            <span class="links_name">Chola</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="adityabirla.html" target="_blank">
             <i class="bx bx-message"></i>
-            <span class="links_name">Risk Loans</span>
+            <span class="links_name">AdityaBirla</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="roinet.html" target="_blank">
             <i class="bx bx-cog"></i>
-            <span class="links_name">Setting</span>
+            <span class="links_name">Roinet</span>
+          </a>
+        </li>
+        <li>
+          <a href="icicibank.html" target="_blank">
+            <i class="bx bx-cog"></i>
+            <span class="links_name">ICICI bank</span>
           </a>
         </li>
         <li class="log_out">
@@ -94,8 +100,9 @@
         <div class="overview-boxes">
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Open</div>
-              <div class="number">40</div>
+              <!--<a href="https://application.werize.com/home?partnerId=c8e189d6-7594-429e-b7d1-5c6c31e9d358"><div class="box-topic">WeRize</div></a> -->
+              <a href="werize.html" target="_blank">WeRize</a>
+              <div class="number"><span id="openCount"></span></div>
               <div class="indicator">
                 <i class="bx bx-up-arrow-alt"></i>
                 <span class="text">Up from yesterday</span>
@@ -105,8 +112,8 @@
           </div>
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Progress</div>
-              <div class="number">76</div>
+              <a href="digiloans.html" target="_blank">DigiLoans</a>
+              <div class="number"><span id="inProgressCount"></span></div>
               <div class="indicator">
                 <i class="bx bx-up-arrow-alt"></i>
                 <span class="text">Up from yesterday</span>
@@ -116,8 +123,8 @@
           </div>
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Rejected</div>
-              <div class="number">6</div>
+              <a href="ibog.html" target="_blank">iBOG</a>
+              <div class="number"><span id="rejectedCount"></span></div>
               <div class="indicator">
                 <i class="bx bx-up-arrow-alt"></i>
                 <span class="text">Up from yesterday</span>
@@ -127,127 +134,67 @@
           </div>
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Closed</div>
-              <div class="number">11,08</div>
+              <a href="lendingkart.html" target="_blank">Leadingkart</a>
+              <div class="number"><span id="closedCount"></span></div>
               <div class="indicator">
                 <i class="bx bx-down-arrow-alt down"></i>
                 <span class="text">Down From Today</span>
               </div>
             </div>
-            <i class="bx bxs-cart-download cart four"></i>
+            <i class="bx bxs-cart-download cart five"></i>
           </div>
         </div>
-
-        <div class="sales-boxes">
-          <div class="recent-sales box">
-            <div class="title">Pending Loans</div>
-            <div class="sales-details">
-              <ul class="details">
-                <li class="topic">Date</li>
-                <li><a href="#">02 Jan 2020</a></li>
-                <li><a href="#">02 Jan 2022</a></li>
-                <li><a href="#">02 Jan 2022</a></li>
-                <li><a href="#">02 Jan 2023</a></li>
-                <li><a href="#">02 Jan 2024</a></li>
-              </ul>
-              <ul class="details">
-                <li class="topic">Customer</li>
-                <li><a href="#">Alex Doe</a></li>
-                <li><a href="#">David Mart</a></li>
-                <li><a href="#">Roe Parter</a></li>
-                <li><a href="#">Diana Penty</a></li>
-                <li><a href="#">Martin Paw</a></li>
-              </ul>
-              <ul class="details">
-                <li class="topic">Status</li>
-                <li><a href="#">Open</a></li>
-                <li><a href="#">Progress</a></li>
-                <li><a href="#">Closed</a></li>
-                <li><a href="#">Open</a></li>
-                <li><a href="#">Opne</a></li>
-              </ul>
-              <ul class="details">
-                <li class="topic">Disbursed Amount</li>
-                <li><a href="#">Rs.2,20,406</a></li>
-                <li><a href="#">Rs.7,00,253</a></li>
-                <li><a href="#">Rs.1,20,459</a></li>
-                <li><a href="#">Rs.9,20,457</a></li>
-                <li><a href="#">Rs.12,29,156</a></li>
-              </ul>
+        <!--beow-->
+        <div class="home-content">
+          <div class="overview-boxes">
+            <div class="box">
+              <div class="right-side">
+                <a href="chola.html" target="_blank">Chola</a>
+                <div class="number"><span id="openCount"></span></div>
+                <div class="indicator">
+                  <i class="bx bx-up-arrow-alt"></i>
+                  <span class="text">Up from yesterday</span>
+                </div>
+              </div>
+              <i class="bx bx-cart-alt cart"></i>
             </div>
-            <div class="button">
-              <a href="#">See All</a>
+            <div class="box">
+              <div class="right-side">
+                <a href="adityabirla.html" target="_blank">AdityaBirla</a>
+                <div class="number"><span id="inProgressCount"></span></div>
+                <div class="indicator">
+                  <i class="bx bx-up-arrow-alt"></i>
+                  <span class="text">Up from yesterday</span>
+                </div>
+              </div>
+              <i class="bx bxs-cart-add cart two"></i>
             </div>
-          </div>
-          <div class="top-sales box">
-            <div class="title">Risk Loans</div>
-            <ul class="top-sales-details">
-              <li>
-                <a href="#">
-                  <img src="dashboard_images/sunglasses.jpg" alt="" />
-                  <span class="product">Alex Doe</span>
-                </a>
-                <span class="price">Rs.7,11,107</span>
-              </li>
-              <li>
-                <a href="#">
-                  <img src="dashboard_images/jeans.jpg" alt="" />
-                  <span class="product">Diana Penty </span>
-                </a>
-                <span class="price">Rs.56,79,000</span>
-              </li>
-              <li>
-                <a href="#">
-                  <img src="dashboard_images/nike-min.jpg" alt="" />
-                  <span class="product">Martin Paw</span>
-                </a>
-                <span class="price">Rs.12,34,780</span>
-              </li>
-              <li>
-                <a href="#">
-                  <img src="dashboard_images/scarves.jpg" alt="" />
-                  <span class="product">David Mart</span>
-                </a>
-                <span class="price">Rs.2,31,200</span>
-              </li>
-              <!--<li>
-                <a href="#">
-                  <img src="dashboard_images/blueBag.jpg" alt="" />
-                  <span class="product">Succi Ladies Bag</span>
-                </a>
-                <span class="price">$1456</span>
-              </li>
-              <li>
-                <a href="#">
-                  <img src="dashboard_images/bag.jpg" alt="" />
-                  <span class="product">Gucci Womens's Bags</span>
-                </a>
-                <span class="price">$2345</span>
-              </li>
-
-              <li>
-                <a href="#">
-                  <img src="dashboard_images/addidas.jpg" alt="" />
-                  <span class="product">Addidas Running Shoe</span>
-                </a>
-                <span class="price">$2345</span>
-              </li>
-              <li>
-                <a href="#">
-                  <img src="dashboard_images/shirt.jpg" alt="" />
-                  <span class="product">Bilack Wear's Shirt</span>
-                </a>
-                <span class="price">$1245</span>
-              </li> -->
-            </ul>
-            <div class="button">
-                <a href="#">See All</a>
+            <div class="box">
+              <div class="right-side">
+                <a href="roinet.html" target="_blank">Roinet</a>
+                <div class="number"><span id="rejectedCount"></span></div>
+                <div class="indicator">
+                  <i class="bx bx-up-arrow-alt"></i>
+                  <span class="text">Up from yesterday</span>
+                </div>
+              </div>
+              <i class="bx bx-cart cart three"></i>
+            </div>
+            <div class="box">
+              <div class="right-side">
+                <a href="icicibank.html" target="_blank">ICICI bank</a>
+                <div class="number"><span id="closedCount"></span></div>
+                <div class="indicator">
+                  <i class="bx bx-down-arrow-alt down"></i>
+                  <span class="text">Down From Today</span>
+                </div>
+              </div>
+              <i class="bx bxs-cart-download cart five"></i>
             </div>
           </div>
-        </div>
       </div>
     </section>
-
+    <script src="js/fetchTotalLoansCount.js"></script>
     <script>
       let sidebar = document.querySelector(".sidebar");
       let sidebarBtn = document.querySelector(".sidebarBtn");

@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
       var email = emailInput.value;
       var password = passwordInput.value;
 
-      if (email === "admin@a2bdigitalservice.com" && password === "a2bdigital@admin_123") {
+      if (email === "admin@a2bdigital.com" && password === "admin") {
           // Redirect to dashboard.html
           window.location.href = "dashboard.html";
       } else {
