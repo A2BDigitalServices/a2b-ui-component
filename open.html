@@ -3,101 +3,383 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ApplyLoan</title>
+<title>Multi-step Form</title>
 <style>
     body {
         font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
         margin: 0;
         padding: 0;
-        background-color: #f4f4f4;
     }
     .container {
-        max-width: 600px;
-        margin: 20px auto;
+        max-width: 800px;
+        margin: 50px auto;
         padding: 20px;
         background-color: #fff;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     }
-    .form-group {
-        margin-bottom: 20px;
+    h2 {
+        margin-top: 0;
+        font-size: 24px;
+        color: #333;
     }
-    label {
+    .form-step {
+        display: none;
+        border: 2px solid #ffa500;
+        padding: 20px;
+        border-radius: 8px;
+        background-color: #ffffcc;
+    }
+    .current-step {
         display: block;
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
-    input[type="text"], input[type="email"], input[type="tel"], select, textarea {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
     }
     .btn {
-        display: inline-block;
+        margin-top: 20px;
         padding: 10px 20px;
         background-color: #007bff;
         color: #fff;
         border: none;
-        border-radius: 5px;
+        border-radius: 4px;
         cursor: pointer;
+        transition: background-color 0.3s;
     }
     .btn:hover {
         background-color: #0056b3;
+    }
+    label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    input[type="number"],
+    select {
+        width: calc(100% - 22px); /* Adjusted width to accommodate arrow in select */
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #007bff;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    .address-box {
+        border: 1px solid #007bff;
+        border-radius: 4px;
+        padding: 10px;
+        margin-bottom: 15px;
     }
 </style>
 </head>
 <body>
 
-<div class="container" id="firstForm">
-    <h2>Loan Application Form</h2>
-    <form id="form1">
-        <div class="form-group">
-            <label for="firstname">First Name:</label>
-            <input type="text" id="firstname" name="firstname" required>
+<div class="container">
+    <form id="multiStepForm">
+
+        <!-- Form Step 1 -->
+        <div class="form-step current-step" id="step1">
+            <h2>Step 1: Personal Information</h2>
+            <div>
+                <label for="firstname">First Name:</label>
+                <input type="text" id="firstname" name="firstname" required>
+            </div>
+            <div>
+                <label for="lastname">Last Name:</label>
+                <input type="text" id="lastname" name="lastname" required>
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <button type="button" class="btn" onclick="proceedToNextStep(2)">Proceed to Step 2</button>
         </div>
-        <div class="form-group">
-            <label for="lastname">Last Name:</label>
-            <input type="text" id="lastname" name="lastname" required>
+
+        <!-- Form Step 2 -->
+        <div class="form-step" id="step2">
+            <h2>Step 2: Aadhar, DOB, and PAN</h2>
+            <div>
+                <label for="aadharnumber">Aadhar Number:</label>
+                <input type="text" id="aadharnumber" name="aadharnumber" required>
+            </div>
+            <div>
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+            <div>
+                <label for="pannumber">PAN Number:</label>
+                <input type="text" id="pannumber" name="pannumber" required>
+            </div>
+            <button type="button" class="btn" onclick="proceedToNextStep(3)">Proceed to Step 3</button>
         </div>
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+
+        <!-- Form Step 3 (S/O Information) -->
+        <div class="form-step" id="step3">
+            <h2>Step 3: Provide Parent's Information</h2>
+            <div>
+                <label for="soname">Parent's Name:</label>
+                <input type="text" id="soname" name="soname" required>
+            </div>
+            <div>
+                <label for="sophone">Parent's Phone Number:</label>
+                <input type="tel" id="sophone" name="sophone" required>
+            </div>
+            <div>
+                <label for="somail">Parent's Email:</label>
+                <input type="email" id="somail" name="somail" required>
+            </div>
+            <button type="button" class="btn" onclick="proceedToNextStep(4)">Proceed to Step 4</button>
         </div>
-        <div class="form-group">
-            <label for="phone">Phone:</label>
-            <input type="tel" id="phone" name="phone" required>
+
+        <!-- Form Step 4 (Present Address) -->
+        <div class="form-step" id="step4">
+            <h2>Step 4: Present Address</h2>
+            <form id="presentAddressForm">
+                <div class="address-box">
+                    <div>
+                        <label for="presentaddressline1">Address Line 1:</label>
+                        <input type="text" id="presentaddressline1" name="presentaddressline1" required>
+                    </div>
+                    <div>
+                        <label for="presentaddressline2">Address Line 2 (Optional):</label>
+                        <input type="text" id="presentaddressline2" name="presentaddressline2">
+                    </div>
+                    <div>
+                        <label for="presentstate">State:</label>
+                        <input type="text" id="presentstate" name="presentstate" required>
+                    </div>
+                    <div>
+                        <label for="presentcountry">Country:</label>
+                        <input type="text" id="presentcountry" name="presentcountry" required>
+                    </div>
+                    <div>
+                        <label for="presentpincode">Pincode:</label>
+                        <input type="text" id="presentpincode" name="presentpincode" required>
+                    </div>
+                </div>
+            </form>
+            <button type="button" class="btn" onclick="proceedToNextStep(5)">Proceed to Step 5</button>
         </div>
-        <div class="form-group">
-            <label for="address">Address:</label>
-            <input type="text" id="address" name="address" required>
+
+        <!-- Form Step 5 (Permanent Address) -->
+        <div class="form-step" id="step5">
+            <h2>Step 5: Permanent Address</h2>
+            <form id="permanentAddressForm">
+                <div class="address-box">
+                    <div>
+                        <label for="permanentaddressline1">Address Line 1:</label>
+                        <input type="text" id="permanentaddressline1" name="permanentaddressline1" required>
+                    </div>
+                    <div>
+                        <label for="permanentaddressline2">Address Line 2 (Optional):</label>
+                        <input type="text" id="permanentaddressline2" name="permanentaddressline2">
+                    </div>
+                    <div>
+                        <label for="permanentstate">State:</label>
+                        <input type="text" id="permanentstate" name="permanentstate" required>
+                    </div>
+                    <div>
+                        <label for="permanentcountry">Country:</label>
+                        <input type="text" id="permanentcountry" name="permanentcountry" required>
+                    </div>
+                    <div>
+                        <label for="permanentpincode">Pincode:</label>
+                        <input type="text" id="permanentpincode" name="permanentpincode" required>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="copyAddress" onclick="copyPresentAddress()"> 
+                        <label for="copyAddress">Is Present Address Same AS Permanent Address</label>
+                    </div>
+                </div>
+            </form>
+            <button type="button" class="btn" onclick="proceedToNextStep(6)">Proceed to Step 6</button>
         </div>
-        <div class="form-group">
-            <label for="partnerType">Partner Type:</label>
-            <select id="partnerType" name="partnerType">
-                <option value="WeRize">WeRize</option>
-                <option value="AnotherType">AnotherType</option>
-                <option value="SomeType">SomeType</option>
-            </select>
+
+        <!-- Form Step 6 (Company Details) -->
+        <div class="form-step" id="step6">
+            <h2>Step 6: Company Details</h2>
+            <div class="address-box">
+                <div>
+                    <label for="companyname">Company Name:</label>
+                    <input type="text" id="companyname" name="companyname">
+                </div>
+                <div>
+                    <label for="companyaddressline1">Company Address Line 1:</label>
+                    <input type="text" id="companyaddressline1" name="companyaddressline1">
+                </div>
+                <div>
+                    <label for="companyaddressline2">Company Address Line 2 (Optional):</label>
+                    <input type="text" id="companyaddressline2" name="companyaddressline2">
+                </div>
+                <div>
+                    <label for="companystate">Company State:</label>
+                    <input type="text" id="companystate" name="companystate">
+                </div>
+                <div>
+                    <label for="companycountry">Company Country:</label>
+                    <input type="text" id="companycountry" name="companycountry">
+                </div>
+                <div>
+                    <label for="companypincode">Company Pincode:</label>
+                    <input type="text" id="companypincode" name="companypincode">
+                </div>
+                <div>
+                    <label for="companyemail">Company Email:</label>
+                    <input type="email" id="companyemail" name="companyemail">
+                </div>
+            </div>
+            <button type="button" class="btn" onclick="proceedToNextStep(7)">Proceed to Step 7</button>
         </div>
-        <div class="form-group">
-            <label for="status">Status:</label>
-            <select id="status" name="status">
-                <option value="open" selected>Open</option>
-                <option value="closed">Closed</option>
-            </select>
+
+        <!-- Form Step 7 (Loan Details) -->
+        <div class="form-step" id="step7">
+            <h2>Step 7: Loan Details</h2>
+            <div>
+                <label for="monthlyincome">Monthly Income:</label>
+                <select id="monthlyincome" name="monthlyincome" required>
+                    <option value="salary">Salary</option>
+                    <option value="cash">Cash</option>
+                    <option value="check">Check</option>
+                </select>
+            </div>
+            <div>
+                <label for="requiredamount">Required Amount (in INR):</label>
+                <input type="number" id="requiredamount" name="requiredamount" required>
+            </div>
+            <div>
+                <label for="tenure">Tenure (in months):</label>
+                <input type="number" id="tenure" name="tenure" required>
+            </div>
+            <div>
+                <label for="activeLoans">Do you have any active loans?</label>
+                <select id="activeLoans" name="activeLoans" required onchange="showEMIAmount()">
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                </select>
+            </div>
+            <div id="emiAmountSection" style="display: none;">
+                <label for="totalEMIAmount">Total Current EMI Amount (in INR):</label>
+                <input type="number" id="totalEMIAmount" name="totalEMIAmount">
+            </div>
+            <button type="button" class="btn" onclick="proceedToNextStep(8)">Proceed to Step 8</button>
         </div>
-        <div class="form-group">
-            <label for="remarks">Remarks:</label>
-            <textarea id="remarks" name="remarks"></textarea>
+
+		<!-- Form Step 8 (Reference Details) -->
+        <div class="form-step" id="step8">
+            <h2>Step 8: Reference Details</h2>
+            <div class="address-box">
+                <h3>Reference 1:</h3>
+                <div>
+                    <label for="reference1name">Name:</label>
+                    <input type="text" id="reference1name" name="reference1name">
+                </div>
+                <div>
+                    <label for="reference1phone">Phone:</label>
+                    <input type="tel" id="reference1phone" name="reference1phone">
+                </div>
+            </div>
+            <div class="address-box">
+                <h3>Reference 2:</h3>
+                <div>
+                    <label for="reference2name">Name:</label>
+                    <input type="text" id="reference2name" name="reference2name">
+                </div>
+                <div>
+                    <label for="reference2phone">Phone:</label>
+                    <input type="tel" id="reference2phone" name="reference2phone">
+                </div>
+            </div>
+            <button type="button" class="btn" onclick="proceedToNextStep(9)">Proceed to Step 9</button>
         </div>
-        <button type="button" class="btn" onclick="validateForm()">Submit</button>
+
+          <!-- Form Step 9 (Nominee Details) -->
+        <div class="form-step" id="step9">
+            <h2>Step 9: Nominee Details</h2>
+            <div class="address-box">
+                <div>
+                    <label for="nomineename">Nominee Name:</label>
+                    <input type="text" id="nomineename" name="nomineename">
+                </div>
+                <div>
+                    <label for="nomineeage">Nominee Age:</label>
+                    <input type="number" id="nomineeage" name="nomineeage">
+                </div>
+                <div>
+                    <label for="nomineephone">Nominee Phone:</label>
+                    <input type="tel" id="nomineephone" name="nomineephone">
+                </div>
+                <div>
+                    <label for="nomineeemail">Nominee Email:</label>
+                    <input type="email" id="nomineeemail" name="nomineeemail">
+                </div>
+            </div>
+            <button type="button" class="btn" onclick="submitForm()">Submit Application</button>
+        </div>
+
     </form>
 </div>
 
 <script>
-    async function validateForm() {
-        var fields = document.querySelectorAll('#firstForm input, #firstForm select, #firstForm textarea');
+    var currentStep = 1;
+
+    function proceedToNextStep(step) {
+        var currentFormStep = document.getElementById('step' + currentStep);
+        var nextFormStep = document.getElementById('step' + step);
+
+        // Check if all fields are filled in the current step
+        if (validateStep(currentFormStep)) {
+            currentFormStep.classList.remove('current-step');
+            nextFormStep.classList.add('current-step');
+            currentStep = step;
+        } else {
+            alert('Please enter all details.');
+        }
+    }
+
+    function validateStep(step) {
+        var inputs = step.querySelectorAll('input, select');
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs[i].hasAttribute('required') && !inputs[i].value) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function copyPresentAddress() {
+        if (document.getElementById('copyAddress').checked) {
+            // Copy present address to permanent address fields
+            document.getElementById('permanentaddressline1').value = document.getElementById('presentaddressline1').value;
+            document.getElementById('permanentaddressline2').value = document.getElementById('presentaddressline2').value;
+            document.getElementById('permanentstate').value = document.getElementById('presentstate').value;
+            document.getElementById('permanentcountry').value = document.getElementById('presentcountry').value;
+            document.getElementById('permanentpincode').value = document.getElementById('presentpincode').value;
+        } else {
+            // Clear permanent address fields
+            document.getElementById('permanentaddressline1').value = '';
+            document.getElementById('permanentaddressline2').value = '';
+            document.getElementById('permanentstate').value = '';
+            document.getElementById('permanentcountry').value = '';
+            document.getElementById('permanentpincode').value = '';
+        }
+    }
+
+    function showEMIAmount() {
+        var activeLoans = document.getElementById('activeLoans').value;
+        var emiAmountSection = document.getElementById('emiAmountSection');
+
+        if (activeLoans === 'yes') {
+            emiAmountSection.style.display = 'block';
+            // You can fetch or calculate the total EMI amount here
+        } else {
+            emiAmountSection.style.display = 'none';
+            document.getElementById('totalEMIAmount').value = ''; // Clear the total EMI amount field
+        }
+    }
+
+    async function submitForm() {
+        var fields = document.querySelectorAll('#multiStepForm input, #multiStepForm select, #multiStepForm textarea');
         var valid = true;
         fields.forEach(function(field) {
             if (!field.checkValidity()) {
@@ -105,27 +387,51 @@
             }
         });
 
-        // Validate phone number length
-        var phoneInput = document.getElementById('phone');
-        if (phoneInput.value.length !== 10) {
-            valid = false;
-            alert('Phone number should be 10 digits.');
-        }
-
-        if (valid) {
+        if (true) {
             var formData = {
                 firstname: document.getElementById('firstname').value,
                 lastname: document.getElementById('lastname').value,
                 email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                address: document.getElementById('address').value,
-                partnerType: document.getElementById('partnerType').value,
-                status: document.getElementById('status').value,
-                remarks: document.getElementById('remarks').value
+                aadharnumber: document.getElementById('aadharnumber').value,
+                dob: document.getElementById('dob').value,
+                pannumber: document.getElementById('pannumber').value,
+                soname: document.getElementById('soname').value,
+                sophone: document.getElementById('sophone').value,
+                somail: document.getElementById('somail').value,
+                presentaddressline1: document.getElementById('presentaddressline1').value,
+                presentaddressline2: document.getElementById('presentaddressline2').value,
+                presentstate: document.getElementById('presentstate').value,
+                presentcountry: document.getElementById('presentcountry').value,
+                presentpincode: document.getElementById('presentpincode').value,
+                permanentaddressline1: document.getElementById('permanentaddressline1').value,
+                permanentaddressline2: document.getElementById('permanentaddressline2').value,
+                permanentstate: document.getElementById('permanentstate').value,
+                permanentcountry: document.getElementById('permanentcountry').value,
+                permanentpincode: document.getElementById('permanentpincode').value,
+                companyname: document.getElementById('companyname').value,
+                companyaddressline1: document.getElementById('companyaddressline1').value,
+                companyaddressline2: document.getElementById('companyaddressline2').value,
+                companystate: document.getElementById('companystate').value,
+                companycountry: document.getElementById('companycountry').value,
+                companypincode: document.getElementById('companypincode').value,
+                companyemail: document.getElementById('companyemail').value,
+                monthlyincome: document.getElementById('monthlyincome').value,
+                requiredamount: document.getElementById('requiredamount').value,
+                tenure: document.getElementById('tenure').value,
+                activeLoans: document.getElementById('activeLoans').value,
+                totalEMIAmount: document.getElementById('totalEMIAmount').value,
+                reference1name: document.getElementById('reference1name').value,
+                reference1phone: document.getElementById('reference1phone').value,
+                reference2name: document.getElementById('reference2name').value,
+                reference2phone: document.getElementById('reference2phone').value,
+                nomineename: document.getElementById('nomineename').value,
+                nomineeage: document.getElementById('nomineeage').value,
+                nomineephone: document.getElementById('nomineephone').value,
+                nomineeemail: document.getElementById('nomineeemail').value
             };
 
             try {
-                const response = await fetch('https://a2b-login-java-microservice.onrender.com/open', {
+                const response = await fetch('https://a2b-login-java-microservice.onrender.com/form', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -137,7 +443,7 @@
                     const responseData = await response.json();
                     const referenceNumber = responseData;
                     alert('Your loan request submitted successfully. Here is your reference number: ' + referenceNumber);
-					clearForm(); // Clear form fields
+                    clearForm(); // Clear form fields
                 } else {
                     alert('Error: Unable to submit form. Please try again later.');
                 }
@@ -148,15 +454,19 @@
             alert('Please fill out all fields correctly in the form.');
         }
     }
-	function clearForm() {
-        document.getElementById('firstname').value = '';
-        document.getElementById('lastname').value = '';
-        document.getElementById('email').value = '';
-        document.getElementById('phone').value = '';
-        document.getElementById('address').value = '';
-        document.getElementById('partnerType').value = 'WeRize'; // Reset to default
-        document.getElementById('status').value = 'open'; // Reset to default
-        document.getElementById('remarks').value = '';
+
+    function clearForm() {
+        // Clear all form fields
+        document.querySelectorAll('#multiStepForm input, #multiStepForm select, #multiStepForm textarea').forEach(function(field) {
+            field.value = '';
+        });
+
+        // Reset to step 1
+        document.querySelectorAll('.form-step').forEach(function(step) {
+            step.classList.remove('current-step');
+        });
+        document.getElementById('step1').classList.add('current-step');
+        currentStep = 1;
     }
 </script>
 
